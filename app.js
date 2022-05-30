@@ -1,4 +1,4 @@
-let peliculas_array = new Array();
+let peliculas_array = [];
 
 let id_peliculas = 1;
 
@@ -67,7 +67,7 @@ function datos_movies(){
             alert (mensaje);
             control = confirm ("Quieres cargar otra pelicula?");
         } else {
-            return new Peliculas(pelicula, genero, fecha)
+            return new Peliculas(pelicula,genero,fecha);
         }
 
 
@@ -88,28 +88,37 @@ function ingresarNuevaPelicula(){
 }
 
 function quitarPelicula() {
-    if (listaPeliculas ()){
+    if (listaPeliculas()){
         muestroListaPeliculas();
 
-        let nombrePelicula = prompt ("Ingrese nombre de la pelicula a quitar");
+        let nombrePelicula = prompt("Ingrese nombre de la pelicula a quitar").trim();
 
-        if(nombrePelicula){
+        if(peliculas_array.some((a) => a.pelicula == nombrePelicula)){
             
-            let peliculaEnLista = peliculas_array.find((pelicula)=> pelicula.pelicula == nombrePelicula);
+            let peliculaEnLista = peliculas_array.find((a) => a.pelicula == nombrePelicula);
 
-        };
-        if( peliculaEnLista){
-            let respuesta = confirm (
-                "Estas seguro de eliminar esa pelicula" + 
-                peliculaEnLista.mostrarPeliculas() + "?");
-            
-        };
-        if(respuesta){
-            peliculas_array = peliculas_array.filter(
-                (pelicula) => pelicula.pelicula != peliculasEnLista);
-            
-        };
-        alert("La pelicula ha sido eliminada");
+        
+            if(peliculaEnLista){
+                let respuesta = confirm(
+                    "Estas seguro de eliminar esa pelicula" + 
+                    peliculaEnLista.mostrar_peliculas() + "?" + "\n");
+                
+           
+                if(respuesta){
+                    peliculas_array = peliculas_array.filter(
+                        (a) => a.pelicula != nombrePelicula); 
+                   alert("La pelicula ha sido eliminada");               
+                    
+                }
+                
+
+               
+                
+            }
+            else {
+                alert("El nombre no ha sido ingresado bien")
+            }
+        }
     }
 }
 
@@ -121,8 +130,8 @@ function mostrarPeliculas(){
 }
 function muestroListaPeliculas(){
     let mensaje = "Las peliculas en Store son:";
-    peliculas_array.forEach((pelicula) => {
-        mensaje = mensaje + "\n" + pelicula.mostrar_peliculas();
+    peliculas_array.forEach((peli) => {
+        mensaje = mensaje + "\n" + peli.mostrar_peliculas();
     });
     alert(mensaje);
 }
@@ -135,4 +144,24 @@ function listaPeliculas (){
     return true;
 
 }
+
+function buscarPeliculas (){
+    
+    let nombrePelicula = prompt("Ingrese nombre de la pelicula a buscar?" );
+
+    for (peliBusqueda of peliculas_array){
+        if(peliBusqueda.getPelicula() == nombrePelicula){
+            alert("Esa peliculas esta en nuestra Store");
+            let peliculaEncontrada = peliculas_array.forEach(peliBusqueda => alert("Esta es la pelicula" + "\n" + peliBusqueda.pelicula));
+            return peliculaEncontrada;
+        }
+        else {
+            alert("No se encuentra esa pelicula en nuestro Store");
+
+        }
+    }
+    
+   
+}
+   
 
