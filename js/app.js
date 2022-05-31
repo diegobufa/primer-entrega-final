@@ -153,10 +153,15 @@ function buscarPeliculas (){
         if(peliBusqueda.getPelicula() == nombrePelicula){
             alert("Esa peliculas esta en nuestra Store");
             let peliculaEncontrada = peliculas_array.forEach(peliBusqueda => alert("Esta es la pelicula" + "\n" + peliBusqueda.pelicula));
+            let muestroHtml = document.createElement ("div");
+            muestroHtml.innerHTML = ` <h3> Nombre Pelicula: ${peliBusqueda.pelicula}</h3>
+                                        <p> Genero de la pelicula: ${peliBusqueda.genero}</p>
+                                        <p> Año de la pelicula: ${peliBusqueda.fecha}</p>`
+            document.body.appendChild(muestroHtml);
             
         }
         else {
-            alert("No se encuentra esa pelicula en nuestro Store");
+            document.write("<h3> Esa pelicula no se encuentra en nuestra Store </h3>");
 
         }
     }
