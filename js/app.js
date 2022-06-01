@@ -1,4 +1,37 @@
 let peliculas_array = [];
+let boton = 
+            document.getElementById("btnPrincipal")
+            boton.addEventListener("click", repuestaClick);
+function repuestaClick(){
+    let click = prompt("Quieres agregar una pelicula SI o NO?").toLowerCase();
+    if (click == "si"){
+        ingresarNuevaPelicula();
+    }
+    else if (click =="no"){
+        alert("Gracias por usar el servicio de Store Movies");
+    }
+    else{
+        alert("No ingresaste una repuesta valida.");
+        repuestaClick();
+    }
+}
+let boton2=
+            document.getElementById("btnMostrar")
+            boton.addEventListener("click",mostrarEnHtml);
+
+function mostrarEnHtml (){
+    let pelis = peliculas_array;
+    let peliHtml =  document.querySelector('#peliculasHtml');
+    pelis.forEach(pelicula => {
+        let peliHtml1 = document.createElement('p');
+        peliHtml1.innerHTML = `
+                                <p> ${pelicula.pelicula} - ${pelicula.genero} - ${pelicula.fecha} </p>`;
+        peliHtml.appendChild(peliHtml1);
+                        
+    })
+    
+
+}
 
 let id_peliculas = 1;
 
